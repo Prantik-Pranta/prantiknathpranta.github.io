@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prantik Nath Pranta - Professional Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- CSS Custom Properties (Theme) --- */
+        :root {
+            --bg-color: #121212;
+            --primary-color: #1e1e1e;
+            --secondary-color: #2a2a2a;
+            --text-color: #e0e0e0;
+            --accent-color: #00aaff;
+            --accent-hover-color: #0088cc;
+        }
+
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; color: var(--accent-color); }
+        p { margin-bottom: 1rem; }
+        a { color: var(--accent-color); text-decoration: none; }
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--secondary-color);
+            overflow: hidden; /* Prevents scrollbars during animation */
+        }
+
+        /* --- Utility Classes --- */
+        .text-accent {
+            color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover-color);
+        }
+
+        /* --- Header / Navigation --- */
+        .main-header {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .main-header .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-header .main-nav ul li {
+            margin-left: 2rem;
+        }
+
+        .main-header .main-nav a {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .main-header .main-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            padding-top: 10rem; /* Account for fixed header */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        #hero .intro-text {
+             margin-bottom: 2rem;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+        }
+
+        /* --- About Section --- */
+        #about .container {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        #about .about-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.1);
+        }
+
+        .skill-item svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            fill: var(--accent-color);
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+             margin-bottom: 0.5rem;
+        }
+        
+        .project-content p {
+            flex-grow: 1; /* Pushes links to the bottom */
+        }
+
+        .project-links a {
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        /* --- Contact Section --- */
+        #contact form {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact input, #contact textarea {
+            background: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        
+        #contact input:focus, #contact textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            padding: 2rem 0;
+            text-align: center;
+            background: var(--primary-color);
+        }
+        
+        .social-links a {
+            margin: 0 0.75rem;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+            transition: fill 0.3s ease;
+        }
+        
+        .social-links a:hover svg {
+            fill: var(--accent-color);
+        }
+        
+        /* --- SCROLL ANIMATION STYLES --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform; /* Performance hint for browsers */
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* --- Responsive Design --- */
+        @media(max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            
+            #hero h1 { font-size: 3rem; }
+            
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-header .main-nav { display: none; } /* Simple hiding for mobile, can be replaced with a hamburger menu */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Prantik Nath Pranta</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="container">
+                <div class="intro-text">
+                    <p>Hello, I'm</p>
+                    <h1>Prantik Nath Pranta</h1>
+                    <p>A <span class="text-accent">Cyber Security Enthusiast</span></p>
+                </div>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container">
+                <img src="https://media.licdn.com/dms/image/v2/D4E03AQGeZlGoVurAnA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718219720135?e=1756339200&v=beta&t=0zJxG-Lk3WxjW4wc-3ddu6_1Po-tH1cZdYRObs6KtHg" alt="A photo of YOUR NAME" class="about-image hidden">
+                <div class="about-content hidden">
+                    <h2>About Me</h2>
+                    <p>
+                        Welcome to my portfolio! I am a passionate and results-driven professional specializing in [Your Specialization]. With a knack for creative problem-solving and a keen eye for detail, I thrive on turning complex challenges into elegant, effective solutions. 
+                    </p>
+                    <p>
+                        This is where you can write a bit more about your journey, your passion for your field, and what motivates you. Keep it engaging and authentic!
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">My Skills</h2>
+                <div class="skills-grid">
+                    <!-- Add the .hidden class to each item you want to animate -->
+                    <div class="skill-item hidden">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+                        <h3>Java</h3>
+                    </div>
+                    <div class="skill-item hidden">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-item hidden">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+                        <h3>C/C++</h3>
+                    </div>
+                    <div class="skill-item hidden">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+                        <h3>Linux</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">Featured Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card hidden">
+                        <img src="https://placehold.co/400x220/1e1e1e/e0e0e0?text=Project+One" alt="Screenshot of Project One">
+                        <div class="project-content">
+                            <h3>Project One</h3>
+                            <p>A brief, compelling description of your project. What problem does it solve? What technologies or skills did you use? Keep it concise.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card hidden">
+                        <img src="https://placehold.co/400x220/1e1e1e/e0e0e0?text=Project+Two" alt="Screenshot of Project Two">
+                        <div class="project-content">
+                            <h3>Project Two</h3>
+                            <p>Another description for your second project. Highlight a different skill or a unique challenge you overcame here.</p>
+                             <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card hidden">
+                        <img src="https://placehold.co/400x220/1e1e1e/e0e0e0?text=Project+Three" alt="Screenshot of Project Three">
+                        <div class="project-content">
+                            <h3>Project Three</h3>
+                            <p>This could be a personal project, a client collaboration, or a conceptual piece. Explain its significance.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container" style="text-align: center;">
+                <h2 class="hidden">Get In Touch</h2>
+                <p class="hidden">I'm currently open to new opportunities and collaborations. Feel free to send me a message!</p>
+                <form action="#" class="hidden"> <!-- You'll need a form service like Formspree or Netlify Forms -->
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="social-links">
+                 <a href="https://linkedin.com/in/prantik-nath-444711313" target="_blank" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.37h3.06v-4.6c0-1.21.84-2.2 2.2-2.2s2.2.99 2.2 2.2v4.6h3.06zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.5 9.94v-8.37H5.38v8.37h3z"/></svg>
+                </a>
+                <a href="https://github.com/Prantik-Pranta" target="_blank" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.54 1.32.12 2.35.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.72c0 .27.18.58.69.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2Z"/></svg>
+                </a>
+                 <a href="#" target="_blank" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.52 8.52 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.29 1.97-2.09z"/></svg>
+                </a>
+            </div>
+            <p>&copy; 2025 Prantik Nath Pranta. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- SCROLL-BASED ANIMATION ---
+            // Create an observer
+            const observer = new IntersectionObserver(entries => {
+                // Loop over the entries
+                entries.forEach(entry => {
+                    // If the element is visible
+                    if (entry.isIntersecting) {
+                        // Add the 'show' class
+                        entry.target.classList.add('show');
+                    }
+                });
+            });
+
+            // Get all the elements you want to show on scroll
+            const hiddenElements = document.querySelectorAll('.hidden');
+            // Loop through the elements and observe them
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js', {
+  particles: {
+    number: {
+      value: 80,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: "#00aaff"
+    },
+    shape: {
+      type: "circle",
+      stroke: {
+        width: 0,
+        color: "#000"
+      }
+    },
+    opacity: {
+      value: 0.3,
+      random: true
+    },
+    size: {
+      value: 3,
+      random: true
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#00aaff",
+      opacity: 0.2,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      out_mode: "bounce"
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      }
+    },
+    modes: {
+      grab: {
+        distance: 200,
+        line_linked: {
+          opacity: 0.4
+        }
+      },
+      push: {
+        particles_nb: 4
+      }
+    }
+  },
+  retina_detect: true
+});
+</script>
+
+
+</body>
+</html>
